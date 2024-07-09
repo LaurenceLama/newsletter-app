@@ -17,7 +17,7 @@ const config: Config = {
         "fade-in": "fade-in 0.5s ease-in-out forwards",
         title: "title 3s ease-out forwards",
         "fade-bottom": "fade-bottom 3s ease-in-out forwards",
-        // "fade-top": "fade-top 3s ease-in-out forwards", oy balik ka dito pakicheck kung good to delete kase walang nakalagay na keyframes, and chineck ko animation parang walang nagbago
+        "fade-top": "fade-top 3s ease-in-out forwards",
       },
       keyframes: {
         "fade-in-3": {

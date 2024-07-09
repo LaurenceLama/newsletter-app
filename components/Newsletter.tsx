@@ -4,6 +4,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { FormEvent, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { getPlaneKeyframes } from "@/lib/getPlaneKeyframes";
+import { getTrailsKeyframes } from "@/lib/getTrailsKeyframes";
 
 function Newsletter() {
   const [input, setInput] = useState("");
@@ -17,7 +18,7 @@ function Newsletter() {
     const email = input;
     const button = buttonRef.current;
 
-    if (!email || !button) return; 
+    if (!email || !button) return;
 
     if (!active) {
       setActive(true);
@@ -27,13 +28,22 @@ function Newsletter() {
         keyframes: getPlaneKeyframes(set, fromTo, button, setActive, setInput),
       });
 
-      // Pending Trails animation
+      // Trails animation
+      to(button, { keyframes: getTrailsKeyframes(button) });
     }
+
+      // Post request
+      
   };
-  
+
   return (
     <div className="flex flex-col space-y-8 md:w-[400px]">
-      <form className="newsletter-form mt-10 animate-fade-in-3" onSubmit={handleSubmit}> {/*do this: "onSubmit={e => handleSubmit}" to see this if you hover in e: "e: FormEvent<HTMLFormElement>", exclude "this part" */}
+      <form
+        className="newsletter-form mt-10 animate-fade-in-3"
+        onSubmit={handleSubmit}
+      >
+        {" "}
+        {/*do this: "onSubmit={e => handleSubmit}" to see this if you hover in e: "e: FormEvent<HTMLFormElement>", exclude "this part" */}
         <div
           className="group flex items-center gap-x-4 py-1 pl-4 pr-1 rounded-[9px]
         bg-[#090D11] hover:bg-[#15141B] shadow-outline-gray hover:shadow-transparent 
