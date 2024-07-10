@@ -11,6 +11,9 @@ function Newsletter() {
   const [active, setActive] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { to, fromTo, set } = gsap;
+  const [successMessage, setSuccessMessage] =
+    useState<MembersSuccessResponse>();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,9 +36,26 @@ function Newsletter() {
     }
 
       // Post request
-      
-  };
+      const res = await fetch('/api/addSubscription', {
+        body: JSON.stringify({ email }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      });
 
+      const data = await res.json(); // bug alert idk why
+  
+      // if (data.error) {
+      //   // setErrorMessage("You're already subscribed!");
+      //   // setSuccessMessage(undefined);
+      //   console.log(data.error)
+      //   return;
+      // }
+      
+      console.log(data)
+      // setSuccessMessage(data.res);
+      // setErrorMessage("");
+    };
+  
   return (
     <div className="flex flex-col space-y-8 md:w-[400px]">
       <form

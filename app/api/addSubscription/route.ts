@@ -8,6 +8,8 @@ mailchimp.setConfig({
 export async function POST(request: Request) {
   const { email } = await request.json();
 
+  // console.log('email', email)
+  
   if (!email) new Response(JSON.stringify({ error: "Email is required" }));
 
   try {
