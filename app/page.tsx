@@ -1,4 +1,5 @@
 import Newsletter from "@/components/Newsletter";
+import Socials from "@/components/Socials";
 
 export default function Home() {
   return (
@@ -9,7 +10,6 @@ export default function Home() {
         text-transparent duration-1000 bg-white cursor-default 
         text-stroke animate-title sm:text-5xl md:text-6xl whitespace-nowrap
         bg-clip-text" >
-          {/* Text is not fully covered in white (like 2-3% black) pls fix */}
           Get updates by subscribing to the
         </h2>
           <h1 className="z-10 text-4xl font-bold text-center
@@ -18,7 +18,7 @@ export default function Home() {
          from-purple-400 to-purple-800 animate-fade-in-3">Newsletter</h1>
       </div>
       <Newsletter/> 
-      {/* <Socials /> */}
+      <Socials />
     </main>
   );
 }
