@@ -37,38 +37,24 @@ function Newsletter() {
     }
 
     // Post request
-    // const res = await fetch("/api/addSubscription", {
-    //   body: JSON.stringify({ email }),
-    //   headers: { "Content-Type": "application/json" },
-    //   method: "POST",
-    // });
-
-    // const data = await res.json();
-
-    // // console.log(data)
-
-    // if (data.error) {
-    //   setErrorMessage("You're already subscribed!");
-    //   setSuccessMessage(undefined);
-    //   return;
-    // }
-
-    // setSuccessMessage(data.res);
-    // setErrorMessage("");
-    const res = await fetch('/api/addSubscription', {
+    const res = await fetch('/app/api/test.ts', { // I think the problem is here, the how it fetches wrong (no logs can be seen especially route.ts)
       body: JSON.stringify({ email }),
       headers: { "Content-Type": "application/json" },
       method: "POST",
     });
 
-    const data = await res.json();
-
+    const data = await res.json(); // still shows: Unexpected end of JSON input
+    
     if (data.error) {
-      console.log(data.error);
+      setErrorMessage("You're already subscribed!");
+      setSuccessMessage(undefined);
       return;
     }
 
-    console.log(await res.json());
+    console.log(data)
+
+    setSuccessMessage(data.res);
+    setErrorMessage("");
   };
 
   const dismissMessages = () => {
