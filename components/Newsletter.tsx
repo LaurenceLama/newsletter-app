@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { getPlaneKeyframes } from "@/lib/getPlaneKeyframes";
 import { getTrailsKeyframes } from "@/lib/getTrailsKeyframes";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { POST } from "@/app/api/addSubscription/route";
 
 function Newsletter() {
   const [input, setInput] = useState("");
@@ -37,24 +38,29 @@ function Newsletter() {
     }
 
     // Post request
-    const res = await fetch('/app/api/test.ts', { // I think the problem is here, the how it fetches wrong (no logs can be seen especially route.ts)
+    const res = await fetch(`${POST}`, {
+      // I think the problem is here, the how it fetches wrong (no logs can be seen especially route.ts)
       body: JSON.stringify({ email }),
       headers: { "Content-Type": "application/json" },
       method: "POST",
-    });
+    }); // .then(res => res.json()).then((data) => console.log(data));
 
-    const data = await res.json(); // still shows: Unexpected end of JSON input
-    
-    if (data.error) {
-      setErrorMessage("You're already subscribed!");
-      setSuccessMessage(undefined);
-      return;
-    }
+    // const res = await fetch('/api/addSubscription').then(res => res.json())
 
-    console.log(data)
+    console.log(res);
 
-    setSuccessMessage(data.res);
-    setErrorMessage("");
+    // const data = await res.json(); // still shows: Unexpected end of JSON input
+
+    // if (data.error) {
+    //   setErrorMessage("You're already subscribed!");
+    //   setSuccessMessage(undefined);
+    //   return;
+    // }
+
+    // console.log(data)
+
+    // setSuccessMessage(data.res);
+    // setErrorMessage("");
   };
 
   const dismissMessages = () => {

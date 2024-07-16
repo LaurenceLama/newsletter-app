@@ -5,8 +5,6 @@ mailchimp.setConfig({
   server: process.env.MAILCHIMP_API_SERVER,
 });
 
-console.log("Mailchimp Config Set");
-
 export async function POST(request: Request) {
   console.log("Mailchimp Config", {
     apiKey: process.env.MAILCHIMP_API_KEY ? "exists" : "missing",
