@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     server: process.env.MAILCHIMP_API_SERVER ? "exists" : "missing",
     audienceId: process.env.MAILCHIMP_AUDIENCE_ID ? "exists" : "missing",
   });
-  
+
   const { email } = await request.json();
 
   if (!email) new Response(JSON.stringify({ error: "Email is required" }));
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       { email_address: email, status: "subscribed" }
     );
 
-    return new Response(JSON.stringify( res ));
+    return new Response(JSON.stringify({ res }));
   } catch (error: any) {
     return new Response(
       JSON.stringify({ error: JSON.parse(error.response.text) })
