@@ -43,22 +43,20 @@ function Newsletter() {
       method: "POST",
     });
 
-    console.log(res);
+    const data = await res.json();
+
+    if (data.error) { // sooo, now 'data' is now debugged, but new bug appeared. basically the json file does not consist of my MembersSuccessResponse(this is inside typings.d.ts) when console logging
+      console.log(data.error) // and if i put this out of the if statement, it logs 'undefined'
+      setErrorMessage("You're already subscribed!");
+      setSuccessMessage(undefined);
+      return;
+      // so I guess it means the commands of creating new Response for json on route.ts does not mount properly, or my approach is wrong 
+    }
     
-    const data = await res.json(); // still shows: Unexpected end of JSON input (it does not like the `res.json()` part)
-    
-    console.log(data);
+    console.log(data)
 
-    // if (data.error) {
-    //   setErrorMessage("You're already subscribed!");
-    //   setSuccessMessage(undefined);
-    //   return;
-    // }
-
-    // console.log(data)
-
-    // setSuccessMessage(data.res);
-    // setErrorMessage("");
+    setSuccessMessage(data);
+    setErrorMessage("");
   };
 
   const dismissMessages = () => {
