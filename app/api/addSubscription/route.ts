@@ -1,5 +1,5 @@
 import { MembersSuccessResponse } from "@/types";
-import { lists, ErrorResponse } from "@mailchimp/mailchimp_marketing";
+import type { lists, ErrorResponse } from "@mailchimp/mailchimp_marketing";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
