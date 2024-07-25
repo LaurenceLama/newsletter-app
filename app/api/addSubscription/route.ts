@@ -18,7 +18,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       throw new Error("Mailchimp configuration is missing");
     }
 
-    const dataToSend = {
+    // Again here, we are using lists.AddListMemberBody from the Mailchimp SDK to define the dataToSend object. This object contains the proper structure for the request body so we never make a mistake in sending the data to the Mailchimp API.
+    const dataToSend: lists.AddListMemberBody = {
       email_address: email,
       status: "subscribed",
     };
@@ -35,6 +36,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
     );
 
+    // The response from the Mailchimp API is parsed as JSON and stored in the data variable. If the response is not successful, an error is thrown with the error message from the response. If the response is successful, the data is cast to the MembersSuccessResponse type and returned as a JSON response with a status of 200.
     const data: MembersSuccessResponse | ErrorResponse = await res.json();
 
     if (!res.ok) {
