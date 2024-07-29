@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { getPlaneKeyframes } from "@/lib/getPlaneKeyframes";
 import { getTrailsKeyframes } from "@/lib/getTrailsKeyframes";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { MembersSuccessResponse } from "@/types";
 
 function Newsletter() {
   const [input, setInput] = useState("");
@@ -36,27 +37,29 @@ function Newsletter() {
       to(button, { keyframes: getTrailsKeyframes(button) });
     }
 
-    // Post request
-    const res = await fetch('/api/addSubscription', {
-      body: JSON.stringify({ email }),
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-    });
+    try {
+      // Post request
+      const res = await fetch("/api/addSubscription", {
+        body: JSON.stringify({ email }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.error) { // sooo, now 'data' is now debugged, but new bug appeared. basically the json file does not consist of my MembersSuccessResponse(this is inside typings.d.ts) when console logging
-      console.log(data.error) // and if i put this out of the if statement, it logs 'undefined'
-      setErrorMessage("You're already subscribed!");
+      if (!res.ok) {
+        setErrorMessage(data.error || "An unknown error occurred");
+        setSuccessMessage(undefined);
+        return;
+      }
+
+      setSuccessMessage(data);
+      setErrorMessage("");
+    } catch (error) {
+      console.error("Error submitting subscription:", error);
+      setErrorMessage("An error occurred while submitting your subscription.");
       setSuccessMessage(undefined);
-      return;
-      // so I guess it means the commands of creating new Response for json on route.ts does not mount properly, or my approach is wrong 
     }
-    
-    console.log(data)
-
-    setSuccessMessage(data);
-    setErrorMessage("");
   };
 
   const dismissMessages = () => {
