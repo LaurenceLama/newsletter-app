@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { Metadata } from "next";
 
-=======
->>>>>>> aa4e6fe1ae75534362c2a07ada6c534369f4b464
 export const socials = [
   {
     id: 1,
@@ -16,7 +13,6 @@ export const socials = [
     url: "https://www.linkedin.com/in/laurencelama/",
     handle: "LaurenceLama",
   },
-<<<<<<< HEAD
 ];
 
 const title = "Newsletter app";
@@ -56,6 +52,3 @@ export const metaData: Metadata = {
   //   creator: "",
   // },
 };
-=======
-];
->>>>>>> aa4e6fe1ae75534362c2a07ada6c534369f4b464
