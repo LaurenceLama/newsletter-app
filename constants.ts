@@ -44,11 +44,4 @@ export const metaData: Metadata = {
       "max-snippet": -1,
     },
   },
-  // twitter: {
-  //   title: title,
-  //   description: description,
-  //   card: "summary_large_image",
-  //   images: [image],
-  //   creator: "",
-  // },
 };

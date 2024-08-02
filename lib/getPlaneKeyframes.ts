@@ -1,5 +1,3 @@
-// This is not end with .tsx since this only stores a function, not a component
-
 import { Dispatch, SetStateAction } from "react";
 
 export const getPlaneKeyframes = (

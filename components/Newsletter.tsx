@@ -1,4 +1,4 @@
-"use client"; // everything here is server component by default, so it does not support useState, and so does on change. that's where this guy comes in, 'use client' converts this component into a client component to basically support useState and onChange
+"use client"; 
 
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { FormEvent, useRef, useState } from "react";
@@ -73,7 +73,6 @@ function Newsletter() {
         className="newsletter-form mt-10 animate-fade-in-3"
         onSubmit={handleSubmit}
       >
-        {/*do this: "onSubmit={e => handleSubmit}" to see this if you hover in e: "e: FormEvent<HTMLFormElement>", exclude "this part" */}
         <div
           className="group flex items-center gap-x-4 py-1 pl-4 pr-1 rounded-[9px]
         bg-[#090D11] hover:bg-[#15141B] shadow-outline-gray hover:shadow-transparent 
@@ -93,7 +92,7 @@ function Newsletter() {
             className="flex-1 text-white text-sm sm:text-base outline-none 
             placeholder-[#4B4C52] group-focus-within:placeholder-white 
             bg-transparent placeholder:transition-colors placeholder:duration-400"
-            required // transition animation not working
+            required
           />
           <button
             ref={buttonRef}
