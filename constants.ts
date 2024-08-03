@@ -27,8 +27,8 @@ export const metaData: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://laurencelama.com",
-    siteName: "Laurence Lama",
+    url: "newsletter-app-phi.vercel.app",
+    siteName: "Newsletter app project",
     images: [{ url: image }],
     locale: "en-US",
     type: "website",
